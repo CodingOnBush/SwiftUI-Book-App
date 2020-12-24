@@ -15,16 +15,15 @@ struct ProgressBarView: View {
         VStack{
             ZStack(alignment: .leading){
                 Rectangle()
-                        .foregroundColor(Color.gray)
-                        .opacity(0.3)
-                        .frame(width: CGFloat(defaultWidth), height: 8.0)
-                    Rectangle()
-                        .foregroundColor(Color.blue)
-                        .frame(width: CGFloat(defaultWidth) * (progress / 100.0), height: 8.0)
-            }.cornerRadius(4.0)
-            
+                    .foregroundColor(Color.gray)
+                    .opacity(0.3)
+                    .frame(width: CGFloat(defaultWidth), height: 8.0)
+                Rectangle()
+                    .foregroundColor(Color.blue)
+                    .frame(width: CGFloat(defaultWidth) * (progress / 100.0), height: 8.0)
+            }
+            .cornerRadius(4.0)
         }
-        
     }
 }
 
@@ -32,7 +31,7 @@ struct ProgressBarView: View {
 struct ProgressBarView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            ProgressBarView(progress: 50.0, defaultWidth: 200)
+            ProgressBarView(progress: 75.0, defaultWidth: 200)
             ProgressBarView(progress: 50.0, defaultWidth: 200)
         }
         .previewLayout(.sizeThatFits)
