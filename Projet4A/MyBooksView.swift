@@ -18,9 +18,9 @@ struct MyBooksView: View {
                 }
                 .navigationTitle(Text("My Books"))
                 .navigationBarItems(trailing: Button(action: {
-                    
+                    // Open Info view
                 }, label: {
-                    Image(systemName: "gear")
+                    Image(systemName: "info.circle")
                 }).font(.system(size: 20))
                 )
             }

@@ -21,18 +21,24 @@ struct BookCellView: View {
         VStack{
             HStack{
                 ZStack{
-                    Rectangle().fill(Color.red).border(Color.black, width: 10)
-                    Image(book.frontCover).resizable().scaledToFit()
+                    Rectangle().fill(Color.red)
+                        .border(Color.blue, width: 10)
+                    Image(book.frontCover)
+                        .resizable()
+                        .scaledToFit()
                 }
                 .frame(width: 70, height: CGFloat(abs(cellHeight-10)), alignment: .topLeading)
                 .clipped()
                 
                 VStack(alignment: .leading){
                     Group{
-                        Text(book.title).font(.custom("BookTitle", size: 25.0))
+                        Text(book.title)
+                            .font(.custom("BookTitle", size: 25.0))
                         Divider()
-                        Text(book.author).font(.custom("author", size: 15.0))
-                    }.lineLimit(1)
+                        Text(book.author)
+                            .font(.custom("author", size: 15.0))
+                    }
+                    .lineLimit(1)
                 }
                 
                 Spacer()
