@@ -18,7 +18,7 @@ struct MyButtonView: View {
     var body: some View {
         ZStack{
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                Text(buttonName).padding()
+                Text(buttonName).padding(15)
             })
             .foregroundColor(textColor)
             .background(backgroundColor.opacity(opacity))
