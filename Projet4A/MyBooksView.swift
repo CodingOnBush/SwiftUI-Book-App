@@ -13,24 +13,22 @@ struct MyBooksView: View {
             NavigationView{
                 ScrollView{
                     ForEach(myBooks){ myBook in
-                        BookCellView(book: myBook).padding()
+                        BookCellView(book: myBook)
+                            .padding()
                     }
                 }
                 .navigationTitle(Text("My Books"))
-                .navigationBarItems(trailing: Button(action: {
-                    // Open Info view
-                }, label: {
-                    Image(systemName: "info.circle")
-                }).font(.system(size: 20))
-                )
+                .navigationBarItems(trailing: InfoButtonView(size: 25))
             }
             
             HStack(){
-                MyButtonView(buttonName: "Reading Time", backgroundColor: Color.green, textColor: Color.white, fontSize: 25)
+                ReadingTimeButtonView(size: 25)
+                    .shadow(radius: 10)
                 Spacer()
-                MyButtonView(buttonName: "Add Book", backgroundColor: Color.blue, textColor: Color.white, fontSize: 25)
+                AddBookButtonView(size: 25)
+                    .shadow(radius: 10)
             }
-            .padding()
+            .padding(10)
         }
     }
 }
