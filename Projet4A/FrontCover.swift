@@ -14,6 +14,7 @@ struct FrontCover: View {
         ZStack{
             Rectangle().fill(Color.red)
                 .border(Color.blue, width: 10)
+            // TODO: Si pas d'image on met le titre du livre au milieu
             Image(book.frontCover)
                 .resizable()
                 .scaledToFit()
@@ -26,5 +27,7 @@ struct FrontCover: View {
 struct FrontCover_Previews: PreviewProvider {
     static var previews: some View {
         FrontCover(book: myBooks[0], height: 200)
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

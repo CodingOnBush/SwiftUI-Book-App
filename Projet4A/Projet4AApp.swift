@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+// The @main attribute identifies the app’s entry point.
 struct Projet4AApp: App {
     var body: some Scene {
         WindowGroup {

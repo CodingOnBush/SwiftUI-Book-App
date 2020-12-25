@@ -20,15 +20,7 @@ struct BookCellView: View {
     var body: some View {
         VStack{
             HStack{
-                ZStack{
-                    Rectangle().fill(Color.red)
-                        .border(Color.blue, width: 10)
-                    Image(book.frontCover)
-                        .resizable()
-                        .scaledToFit()
-                }
-                .frame(width: 70, height: CGFloat(abs(cellHeight-10)), alignment: .topLeading)
-                .clipped()
+                FrontCover(book: book, height: cellHeight)
                 
                 VStack(alignment: .leading){
                     Group{
@@ -40,11 +32,10 @@ struct BookCellView: View {
                     }
                     .lineLimit(1)
                 }
-                
                 Spacer()
             }
             
-            ProgressBarView(progress: CGFloat(book.currentPage)/CGFloat(book.pageNumber), defaultWidth: 350)
+            ProgressBarView(progress: CGFloat(progress), defaultWidth: 350)
             
             HStack{
                 Spacer()
