@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ReadingTimeButtonView: View {
     var size: CGFloat
+    
     var body: some View {
         ZStack {
             Button(action: {

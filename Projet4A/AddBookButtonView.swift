@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddBookButtonView: View {
     var size: CGFloat
+    
     var body: some View {
         Button(action: {
             addBookButtonAction()

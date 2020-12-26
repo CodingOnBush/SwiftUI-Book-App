@@ -21,7 +21,7 @@ struct Book: Identifiable {
         self.frontCover = id.uuidString
         self.title = title
         self.author = author
-        self.currentPage = 89
+        self.currentPage = 100
         self.pageNumber = 200
         self.language = "Français"
     }

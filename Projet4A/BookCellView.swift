@@ -14,7 +14,7 @@ struct BookCellView: View {
     
     init(book: Book) {
         self.book = book
-        self.progress = book.currentPage/book.pageNumber
+        self.progress = book.currentPage/book.pageNumber*100
     }
     
     var body: some View {
@@ -35,7 +35,7 @@ struct BookCellView: View {
                 Spacer()
             }
             
-            ProgressBarView(progress: CGFloat(progress), defaultWidth: 350)
+            ProgressBarView(progress: self.progress, defaultWidth: 350)
             
             HStack{
                 Spacer()

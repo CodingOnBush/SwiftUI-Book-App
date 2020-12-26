@@ -8,31 +8,32 @@
 import SwiftUI
 
 struct ProgressBarView: View {
-    var progress: CGFloat
+    var progress: Double
     var defaultWidth: Int
     
     var body: some View {
-        VStack{
-            ZStack(alignment: .leading){
-                Rectangle()
-                    .foregroundColor(Color.gray)
-                    .opacity(0.3)
-                    .frame(width: CGFloat(defaultWidth), height: 8.0)
-                Rectangle()
-                    .foregroundColor(Color.blue)
-                    .frame(width: CGFloat(defaultWidth) * (progress / 100.0), height: 8.0)
-            }
-            .cornerRadius(4.0)
+        ZStack(alignment: .leading){
+            Rectangle()
+                .foregroundColor(Color.gray)
+                .opacity(0.3)
+                .frame(width: CGFloat(defaultWidth), height: 8.0)
+            Rectangle()
+                .foregroundColor(Color.blue)
+                .frame(width: CGFloat(defaultWidth) * (CGFloat(progress)/100.0), height: 8.0)
         }
+        .cornerRadius(4.0)
     }
 }
 
 
 struct ProgressBarView_Previews: PreviewProvider {
+    static var progressOne = 75.0
+    static var progressTwo = 50.0
+    
     static var previews: some View {
         Group{
-            ProgressBarView(progress: 75.0, defaultWidth: 200)
-            ProgressBarView(progress: 50.0, defaultWidth: 200)
+            ProgressBarView(progress: progressOne, defaultWidth: 200)
+            ProgressBarView(progress: progressTwo, defaultWidth: 200)
         }
         .previewLayout(.sizeThatFits)
         .padding()
