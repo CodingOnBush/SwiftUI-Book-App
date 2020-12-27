@@ -1,24 +1,25 @@
 //
-//  ListView.swift
+//  TestView2.swift
 //  Projet4A
 //
-//  Created by Sogekingu on 20/12/2020.
+//  Created by Sogekingu on 27/12/2020.
 //
 
 import SwiftUI
 
-struct MyBooksView: View {
+struct TestView2: View {
     @State private var isReadingTimeShowed: Bool = false
     @State private var isAddBookShowed: Bool = false
     @State private var isInfoShowed: Bool = false
     
     var body: some View {
         NavigationView{
-            ZStack(alignment: .bottom) {
+            ZStack (alignment: .bottom) {
                 ScrollView (showsIndicators: false){
                     ForEach(myBooks){ myBook in
-                        NavigationLink(destination: Text("Second View")){
-                            BookCellView(book: myBook).padding()
+                        NavigationLink(destination: BookDetailView(currentBook: myBook)){
+                            BookCellView(book: myBook)
+                                .padding()
                         }.navigationTitle(Text("My Books"))
                     }
                 }
@@ -51,13 +52,14 @@ struct MyBooksView: View {
                         })
                 }
                 .padding(10)
+                
             }
         }
     }
 }
 
-struct MyBooksView_Previews: PreviewProvider {
+struct TestView2_Previews: PreviewProvider {
     static var previews: some View {
-        MyBooksView()
+        TestView2()
     }
 }

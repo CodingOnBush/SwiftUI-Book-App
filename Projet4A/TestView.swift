@@ -26,6 +26,7 @@ class BooksViewModel: ObservableObject {
 
 struct TestView: View {
     @ObservedObject var booksVM = BooksViewModel()
+    @State private var show = false
     
     var body: some View {
         NavigationView {
@@ -33,6 +34,10 @@ struct TestView: View {
                 Text(booksVM.message)
                 ForEach(booksVM.books) { book in
                     BookCellView(book: book)
+                    .sheet(isPresented: $show, content: {
+                        Text("New screen")
+                    })
+                    .padding()
                 }
             }
             .navigationTitle("Scroll view")

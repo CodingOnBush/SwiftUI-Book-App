@@ -9,24 +9,20 @@ import SwiftUI
 
 struct InfoButtonView: View {
     var size: CGFloat
+    let action: () -> Void
+    
     var body: some View {
-        Button(action: {
-            infoButtonAction()
-        }, label: {
+        Button(action: action, label: {
             Image(systemName: "info.circle")
                 .font(.system(size: size))
                 .padding(5)
         })
     }
-    
-    func infoButtonAction(){
-        // Ouvrir la vue avec les infos
-    }
 }
 
 struct InfoButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoButtonView(size: 20)
+        InfoButtonView(size: 20, action: {})
             .previewLayout(.sizeThatFits)
             .padding()
     }

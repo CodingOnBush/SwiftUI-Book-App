@@ -18,7 +18,7 @@ struct ProgressBarView: View {
                 .opacity(0.3)
                 .frame(width: CGFloat(defaultWidth), height: 8.0)
             Rectangle()
-                .foregroundColor(Color.blue)
+                .foregroundColor(Color.purple)
                 .frame(width: CGFloat(defaultWidth) * (CGFloat(progress)/100.0), height: 8.0)
         }
         .cornerRadius(4.0)

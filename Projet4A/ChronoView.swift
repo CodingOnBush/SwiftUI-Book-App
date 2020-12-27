@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChronoView: View {
     var myBooks: [Book]
+    @State private var isLeaveShowed = false
     
     var body: some View {
         VStack {
@@ -17,16 +18,15 @@ struct ChronoView: View {
                 Text("What are you going to read ?")
                     .font(.system(size: 23))
                     .fontWeight(.bold)
-                    .foregroundColor(/*@START_MENU_TOKEN@*/.black/*@END_MENU_TOKEN@*/)
                     .padding(.leading, 10)
                 Spacer()
-                cancelButton()
             }
             .padding()
             
             // Vue horizontal des livres
             MyBooksHorizontalView(myBooks: myBooks, height: 150)
                 .padding(10)
+            
             
             Spacer()
             
@@ -35,7 +35,6 @@ struct ChronoView: View {
                 Spacer()
                 Text("00:00:00")
                     .font(.system(size: 90))
-                    .foregroundColor(.black)
                     .fontWeight(.semibold)
                 Spacer()
             }
@@ -45,20 +44,13 @@ struct ChronoView: View {
             // Zone des bouttons
             VStack {
                 stopButton(size: 50)
-                LeaveButtonView(size: 15)
+                LeaveButtonView(size: 15, action: {
+                    isLeaveShowed.toggle()
+                }).sheet(isPresented: $isLeaveShowed, content: {
+                    Text("Leave")
+                })
             }.padding()
         }
-    }
-    
-    func cancelButton() -> some View{
-        return Button(action: {
-            // Retourner à la vie précédente
-        }, label: {
-            Text("Cancel")
-                .foregroundColor(.black)
-                .font(.system(size: 15))
-                .underline()
-        }).padding(.trailing, 10)
     }
     
     func stopButton(size: Int) -> some View{
@@ -67,7 +59,6 @@ struct ChronoView: View {
         }, label: {
             Text("Stop")
                 .font(.system(size: CGFloat(size)))
-                .foregroundColor(.white)
                 .fontWeight(.bold)
                 .padding()
         })

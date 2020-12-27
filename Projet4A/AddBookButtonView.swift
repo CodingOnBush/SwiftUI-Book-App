@@ -9,29 +9,24 @@ import SwiftUI
 
 struct AddBookButtonView: View {
     var size: CGFloat
+    let action: () -> Void
     
     var body: some View {
-        Button(action: {
-            addBookButtonAction()
-        }, label: {
+        Button(action: action, label: {
             Text("Add Book")
                 .font(.system(size: size))
                 .foregroundColor(Color.white)
                 .fontWeight(.bold)
                 .padding()
         })
-        .background(Color.green)
+        .background(Color.pink)
         .cornerRadius(10.0)
-    }
-    
-    func addBookButtonAction(){
-        // Lancer la vue pour chercher les livres
     }
 }
 
 struct AddBookButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        AddBookButtonView(size: 20)
+        AddBookButtonView(size: 20, action: {})
             .previewLayout(.sizeThatFits)
             .padding()
     }
