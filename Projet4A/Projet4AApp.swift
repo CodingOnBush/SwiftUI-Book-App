@@ -12,7 +12,7 @@ import SwiftUI
 struct Projet4AApp: App {
     var body: some Scene {
         WindowGroup {
-            TestView2()
+            MyBooksView()
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct ChronoView: View {
     var myBooks: [Book]
     @State private var isLeaveShowed = false
+    @State private var cancel = false
     
     var body: some View {
         VStack {

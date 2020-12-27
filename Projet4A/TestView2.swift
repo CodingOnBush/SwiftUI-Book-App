@@ -11,16 +11,18 @@ struct TestView2: View {
     @State private var isReadingTimeShowed: Bool = false
     @State private var isAddBookShowed: Bool = false
     @State private var isInfoShowed: Bool = false
+    @State private var isShowingDetailView: Bool = false
+    
     
     var body: some View {
         NavigationView{
             ZStack (alignment: .bottom) {
                 ScrollView (showsIndicators: false){
                     ForEach(myBooks){ myBook in
-                        NavigationLink(destination: BookDetailView(currentBook: myBook)){
+                        NavigationLink(destination: BookDetailView(currentBook: myBook), isActive: $isShowingDetailView){
                             BookCellView(book: myBook)
                                 .padding()
-                        }.navigationTitle(Text("My Books"))
+                        }.navigationBarTitle(Text("My Books"))
                     }
                 }
                 .navigationBarItems(

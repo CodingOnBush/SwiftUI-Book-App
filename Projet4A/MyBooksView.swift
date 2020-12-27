@@ -13,23 +13,22 @@ struct MyBooksView: View {
     @State private var isInfoShowed: Bool = false
     
     var body: some View {
-        NavigationView{
+        NavigationView {
             ZStack(alignment: .bottom) {
-                ScrollView (showsIndicators: false){
-                    ForEach(myBooks){ myBook in
-                        NavigationLink(destination: Text("Second View")){
-                            BookCellView(book: myBook).padding()
-                        }.navigationTitle(Text("My Books"))
-                    }
+                List(myBooks) { myBook in
+                    NavigationLink(
+                        destination: BookDetailView(currentBook: myBook),
+                        label: {BookCellView(book: myBook)}
+                    )
+                    .navigationTitle(Text("My Books"))
+                    .navigationBarItems(
+                        trailing:
+                            InfoButtonView(
+                                size: 25,
+                                action: {isInfoShowed.toggle()}
+                            ).sheet(isPresented:$isInfoShowed, content: {Text("Info")})
+                    )
                 }
-                .navigationBarItems(
-                    trailing: InfoButtonView(size: 25, action: {
-                    isInfoShowed.toggle()
-                    })
-                    .sheet(isPresented: $isInfoShowed, content: {
-                        Text("Info")
-                    })
-                )
                 
                 HStack(){
                     ReadingTimeButtonView(size: 25, action: {

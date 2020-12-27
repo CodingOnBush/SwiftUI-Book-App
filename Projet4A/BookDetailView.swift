@@ -12,7 +12,7 @@ struct BookDetailView: View {
     
     var body: some View {
         VStack {
-            FrontCover(book: currentBook, height: 300)
+            FrontCover(book: currentBook, height: 300, isSelected: false)
             Text(currentBook.title)
         }
     }

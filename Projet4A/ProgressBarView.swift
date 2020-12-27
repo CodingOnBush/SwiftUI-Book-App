@@ -27,18 +27,12 @@ struct ProgressBarView: View {
 
 
 struct ProgressBarView_Previews: PreviewProvider {
-    static var progressOne = 75.0
-    static var progressTwo = 50.0
-    
     static var previews: some View {
         Group{
-            ProgressBarView(progress: progressOne, defaultWidth: 200)
-            ProgressBarView(progress: progressTwo, defaultWidth: 200)
+            ProgressBarView(progress: 75.0, defaultWidth: 200)
+            ProgressBarView(progress: 50.0, defaultWidth: 200)
         }
         .previewLayout(.sizeThatFits)
         .padding()
     }
 }
-
-
-// Help : https://rahulrs0029.github.io/posts/creating-a-progressbar-in-swiftui/
