@@ -13,11 +13,13 @@ struct AddBookButtonView: View {
     
     var body: some View {
         Button(action: action, label: {
+            Spacer()
             Text("Add Book")
                 .font(.system(size: size))
                 .foregroundColor(Color.white)
                 .fontWeight(.bold)
                 .padding()
+            Spacer()
         })
         .background(Color.pink)
         .cornerRadius(10.0)

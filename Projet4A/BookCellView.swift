@@ -25,7 +25,7 @@ struct BookCellView: View {
             
             VStack{
                 HStack{
-                    FrontCover(book: book, height: 100, isSelected: false)
+                    FrontCover(book: book, height: 100)
                     
                     VStack(alignment: .leading){
                         Group{
@@ -56,7 +56,7 @@ struct BookCellView: View {
                 ProgressBarView(progress: progress, defaultWidth: 200)
                     .padding(.bottom, 10)
             }
-            .padding()
+            .padding(.horizontal, 10)
         }
     }
 }

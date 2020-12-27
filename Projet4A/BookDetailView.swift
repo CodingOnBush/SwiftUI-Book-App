@@ -12,8 +12,13 @@ struct BookDetailView: View {
     
     var body: some View {
         VStack {
-            FrontCover(book: currentBook, height: 300, isSelected: false)
+            FrontCover(book: currentBook, height: 300)
             Text(currentBook.title)
+            Button(action: {
+                myBooks.append(currentBook)
+            }, label: {
+                Text("Ajouter")
+            })
         }
     }
 }
