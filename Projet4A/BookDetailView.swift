@@ -8,23 +8,60 @@
 import SwiftUI
 
 struct BookDetailView: View {
-    var currentBook: Book
+    @State var currentBook: Book
+    let addAction: () -> Void
+    let deleteAction: () -> Void
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack {
-            FrontCover(book: currentBook, height: 300)
-            Text(currentBook.title)
-            Button(action: {
-                myBooks.append(currentBook)
-            }, label: {
-                Text("Ajouter")
-            })
+        VStack
+        {
+            ScrollView
+            {
+                FrontCover(book: currentBook, height: 300)
+                    .padding(.vertical, 30)
+
+                HStack {
+                    Text("Title :")
+                    Text(currentBook.title).lineLimit(1)
+                    Spacer()
+                }.padding()
+
+                HStack {
+                    Text("Author :")
+                    Text(currentBook.author).lineLimit(1)
+                    Spacer()
+                }.padding()
+
+                HStack {
+                    Text("Language :")
+                    Text(currentBook.language).lineLimit(1)
+                    Spacer()
+                }.padding()
+
+                HStack {
+                    Text("Page number :")
+                    Text("\(Int(currentBook.pageNumber))").lineLimit(1)
+                    Spacer()
+                }.padding()
+                Spacer()
+                
+                Button(action: {
+                    addAction()
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Add")
+                })
+
+                Spacer()
+                
+            }
         }
     }
 }
 
 struct BookDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        BookDetailView(currentBook: myBooks[0])
+        BookDetailView(currentBook: myBooks[0], addAction: {}, deleteAction: {})
     }
 }

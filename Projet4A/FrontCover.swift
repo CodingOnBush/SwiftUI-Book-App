@@ -13,17 +13,20 @@ struct FrontCover: View {
     
     var body: some View {
         ZStack{
-            Group {
-                Rectangle()
-                    .fill(Color.red)
-                    .border(Color.gray, width: 10)
-                // TODO: Si pas d'image on met le titre du livre au milieu
-                Image(book.frontCover)
-                    .resizable()
-                    .scaledToFit()
-            }
-            .frame(width: CGFloat(Double(height)/1.5), height: CGFloat(height), alignment: .topLeading)
-            .clipped()
+            Rectangle()
+                .fill(Color.red)
+                .border(Color.gray, width: 10)
+                .frame(width: CGFloat(Double(height)/1.5), height: CGFloat(height), alignment: .topLeading)
+                .clipped()
+
+            Text(book.title)
+                .frame(width: CGFloat(Double(height-45)/1.5), height: CGFloat(height-30))
+            
+            Image(book.frontCover)
+                .resizable()
+                .scaledToFit()
+                .frame(width: CGFloat(Double(height)/1.5), height: CGFloat(height), alignment: .topLeading)
+                .clipped()
         }
     }
 }

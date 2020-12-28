@@ -2,51 +2,28 @@
 //  TestView.swift
 //  Projet4A
 //
-//  Created by Sogekingu on 26/12/2020.
+//  Created by Sogekingu on 28/12/2020.
 //
-//
+
 import SwiftUI
 
-let apiURL = "https://www.googleapis.com/books/v1/volumes?q=search+terms"
-
-class BooksViewModel: ObservableObject {
-    
-    @Published var message = "Message from BooksViewModel"
-    
-    @Published var books: [Book] = [
-        Book(title: "Title", author: "Author")
+struct TestView: View {
+    var layout = [
+        GridItem(.adaptive(minimum: 100), spacing: 2, alignment: .center)
     ]
     
-    func changement(){
-        self.message = "NEW"
-        self.books.append(Book(title: "New title", author: "New author"))
-    }
-    
-}
-
-struct TestView: View {
-    @ObservedObject var booksVM = BooksViewModel()
-    @State private var show = false
+    let symbols = ["heart", "paperplane", "pencil", "trash", "folder"]
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                Text(booksVM.message)
-                ForEach(booksVM.books) { book in
-                    BookCellView(book: book)
-                    .sheet(isPresented: $show, content: {
-                        Text("New screen")
-                    })
-                    .padding()
-                }
+        LazyVGrid(columns: layout) {
+            ForEach(symbols, id: \.self) { symbol in
+                VStack {
+                    Image(systemName: symbol)
+                        .font(.system(size: 30))
+                    Text(symbol)
+                        .font(.system(size: 10))
+                }.padding()
             }
-            .navigationTitle("Scroll view")
-            .navigationBarItems(trailing: Button(action: {
-                print("Fetching DATA")
-                self.booksVM.changement()
-            }, label: {
-                Text("Refresh")
-            }))
         }
     }
 }

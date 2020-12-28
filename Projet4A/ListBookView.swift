@@ -17,7 +17,7 @@ struct ListBookView: View {
             ZStack(alignment: .bottom) {
                 List(myBooks) { myBook in
                     NavigationLink(
-                        destination: BookDetailView(currentBook: myBook),
+                        destination: BookDetailView(currentBook: myBook, addAction: {}, deleteAction: {}),
                         label: {BookCellView(book: myBook)}
                     )
                     .navigationTitle(Text("My Books"))
@@ -30,7 +30,7 @@ struct ListBookView: View {
                 })
                 .shadow(radius: 10)
                 .sheet(isPresented: $isAddBookShowed, content: {
-                    Text("Add Book")
+                    AddBookView()
                 })
                 .padding(10)
             }

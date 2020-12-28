@@ -10,30 +10,46 @@ import SwiftUI
 class BookListResult: ObservableObject {
 
     @Published var booksResult: [Book] = [
-        //Book(title: "Title", author: "Author")
+        Book(title: "Title2", author: "Author2"),
+        Book(title: "Title2", author: "Author2"),
+        Book(title: "Title2", author: "Author2"),
+        Book(title: "Title2", author: "Author2"),
+        Book(title: "Title2", author: "Author2")
     ]
+    
+    @Published var allBooks: [Book] = myBooks
 
     func changement(){
         self.booksResult.append(Book(title: "New title", author: "New author"))
+        getData()
     }
     
     func getData(){
         
     }
+    
+    func addToMyBooks(book: Book){
+        allBooks.append(book)
+    }
+    
+    func removeFromMyBooks(book: Book){
+        if let i = booksResult.firstIndex(of: book) {
+            booksResult.remove(at: i)
+            print("\(book.title) Removed")
+        }
+    }
 
 }
 
 struct AddBookView: View {
-    @ObservedObject var booksVM = BooksViewModel()
+    @ObservedObject var booksVM = BookListResult()
     @State var research = ""
     @State private var show: Bool = false
+    @State private var isAdded: Bool = false
     
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-                Text("Find a book")
-                        .font(.callout)
-                        .bold()
+        NavigationView {
+            VStack {
                 HStack {
                     TextField("Yoww", text: $research)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -41,26 +57,19 @@ struct AddBookView: View {
                         .font(.system(size: CGFloat(30)))
                     Spacer()
                     Button(action: {
-                        // Rechercher le mot
                         booksVM.changement()
                     }, label: {
                         Text("GO")
                     })
+                }.padding(.horizontal, 20)
+                
+                ScrollView {
+                    ForEach(booksVM.booksResult) { myBook in
+                        BookCellView(book: myBook).padding()
+                    }
                 }
-            }.padding()
-            
-            List(booksVM.books) { myBook in
-                Button(action: {
-                    show.toggle()
-                }, label: {
-                    BookCellView(book: myBook)
-                }).sheet(isPresented: $show, content: {
-                    BookDetailView(currentBook: myBook)
-                })
-            }
-            .listStyle(GroupedListStyle())
-            
-            Spacer()
+                
+            }.navigationTitle("Find a book")
         }
     }
 }
