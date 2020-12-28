@@ -11,13 +11,16 @@ struct ListBookView: View {
     @State private var isReadingTimeShowed: Bool = false
     @State private var isAddBookShowed: Bool = false
     @State private var isInfoShowed: Bool = false
+    @ObservedObject var actu = Actu()
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                List(myBooks) { myBook in
+                List(actu.booksResult) { myBook in
                     NavigationLink(
-                        destination: BookDetailView(currentBook: myBook, addAction: {}, deleteAction: {}),
+                        destination: BookDetailView(currentBook: myBook, deleteAction: {
+                            actu.removeFromMyBooks(book: myBook)
+                        }),
                         label: {BookCellView(book: myBook)}
                     )
                     .navigationTitle(Text("My Books"))
@@ -30,7 +33,7 @@ struct ListBookView: View {
                 })
                 .shadow(radius: 10)
                 .sheet(isPresented: $isAddBookShowed, content: {
-                    AddBookView()
+                    AddBookView(addAction: {})
                 })
                 .padding(10)
             }

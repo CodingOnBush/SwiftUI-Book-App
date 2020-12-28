@@ -19,8 +19,8 @@
 		1EEC16D0256BE688000A2407 /* Projet4AApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEC16CF256BE688000A2407 /* Projet4AApp.swift */; };
 		1EEC16D4256BE68E000A2407 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EEC16D3256BE68E000A2407 /* Assets.xcassets */; };
 		1EEC16D7256BE68E000A2407 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EEC16D6256BE68E000A2407 /* Preview Assets.xcassets */; };
-		1EF742EC259A33FC00C7C587 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF742EB259A33FC00C7C587 /* TestView.swift */; };
 		1EF742F3259A36AB00C7C587 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1EF742F2259A36AB00C7C587 /* KingfisherSwiftUI */; };
+		1EF742FF259A4D9F00C7C587 /* Actu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF742FE259A4D9F00C7C587 /* Actu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,7 @@
 		1EEC16D3256BE68E000A2407 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EEC16D6256BE68E000A2407 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1EEC16D8256BE68E000A2407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1EF742EB259A33FC00C7C587 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		1EF742FE259A4D9F00C7C587 /* Actu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,14 +102,14 @@
 				1EAF5E0E258FFCA600CE1021 /* Book.swift */,
 				1EAF5E07258FF35B00CE1021 /* ListBookView.swift */,
 				1E6B6C71259927B40076340B /* AddBookView.swift */,
+				1EAF5E14258FFEB500CE1021 /* BookCellView.swift */,
 				1E179F6C25953127007DDF96 /* FrontCover.swift */,
 				1E6B6C532598BC9E0076340B /* BookDetailView.swift */,
+				1EB652892594E6FE00C1C011 /* AddBookButtonView.swift */,
+				1EDE038B2591EF29001A72C8 /* ProgressBarView.swift */,
 				1EEC16D3256BE68E000A2407 /* Assets.xcassets */,
 				1EEC16D8256BE68E000A2407 /* Info.plist */,
-				1EDE038B2591EF29001A72C8 /* ProgressBarView.swift */,
-				1EAF5E14258FFEB500CE1021 /* BookCellView.swift */,
-				1EB652892594E6FE00C1C011 /* AddBookButtonView.swift */,
-				1EF742EB259A33FC00C7C587 /* TestView.swift */,
+				1EF742FE259A4D9F00C7C587 /* Actu.swift */,
 			);
 			path = Projet4A;
 			sourceTree = "<group>";
@@ -197,9 +197,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EF742EC259A33FC00C7C587 /* TestView.swift in Sources */,
 				1EAF5E12258FFDAE00CE1021 /* Data.swift in Sources */,
 				1EAF5E15258FFEB500CE1021 /* BookCellView.swift in Sources */,
+				1EF742FF259A4D9F00C7C587 /* Actu.swift in Sources */,
 				1EAF5E08258FF35B00CE1021 /* ListBookView.swift in Sources */,
 				1E6B6C542598BC9E0076340B /* BookDetailView.swift in Sources */,
 				1EDE038C2591EF29001A72C8 /* ProgressBarView.swift in Sources */,

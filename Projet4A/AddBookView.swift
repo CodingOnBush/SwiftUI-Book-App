@@ -10,7 +10,7 @@ import SwiftUI
 class BookListResult: ObservableObject {
 
     @Published var booksResult: [Book] = [
-        Book(title: "Title2", author: "Author2"),
+        Book(title: "Title8", author: "Author8"),
         Book(title: "Title2", author: "Author2"),
         Book(title: "Title2", author: "Author2"),
         Book(title: "Title2", author: "Author2"),
@@ -33,19 +33,23 @@ class BookListResult: ObservableObject {
     }
     
     func removeFromMyBooks(book: Book){
-        if let i = booksResult.firstIndex(of: book) {
-            booksResult.remove(at: i)
-            print("\(book.title) Removed")
-        }
+//        if let i = booksResult.firstIndex(of: book) {
+//            booksResult.remove(at: i)
+//            print("\(book.title) Removed")
+//        }
     }
 
 }
 
 struct AddBookView: View {
     @ObservedObject var booksVM = BookListResult()
+    @ObservedObject var actu = Actu()
     @State var research = ""
     @State private var show: Bool = false
     @State private var isAdded: Bool = false
+    @State private var addedBook: Book?
+    let addAction: () -> Void
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -57,7 +61,7 @@ struct AddBookView: View {
                         .font(.system(size: CGFloat(30)))
                     Spacer()
                     Button(action: {
-                        booksVM.changement()
+                        booksVM.addToMyBooks(book: Book(title: "ADZA", author: "2AE"))
                     }, label: {
                         Text("GO")
                     })
@@ -65,7 +69,16 @@ struct AddBookView: View {
                 
                 ScrollView {
                     ForEach(booksVM.booksResult) { myBook in
-                        BookCellView(book: myBook).padding()
+                        HStack {
+                            BookCellView(book: myBook).padding(.leading, 20)
+                            Button(action: {
+                                actu.addToMyBooks(book: myBook)
+                                presentationMode.wrappedValue.dismiss()
+                            }, label: {
+                                Image(systemName: "plus.square")
+                                    .font(.system(size: 30))
+                            }).padding()
+                        }
                     }
                 }
                 
@@ -76,6 +89,6 @@ struct AddBookView: View {
 
 struct AddBookView_Previews: PreviewProvider {
     static var previews: some View {
-        AddBookView()
+        AddBookView(addAction: {})
     }
 }

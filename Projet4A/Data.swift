@@ -11,26 +11,10 @@ var myBooks: [Book] = [
     Book(title: "EAIUGDZ", author: "DAZUDH"),
     Book(title: "Title2", author: "Author2"),
     Book(title: "Title3", author: "Author3"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
     Book(title: "Title", author: "Author")
 ]
 
 var result: [Book] = [
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
-    Book(title: "Title", author: "Author"),
     Book(title: "Title", author: "Author"),
     Book(title: "Title", author: "Author"),
     Book(title: "Title", author: "Author")

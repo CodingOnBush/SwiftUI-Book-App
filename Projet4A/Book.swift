@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Book: Identifiable, Equatable {
+class Book: Identifiable, ObservableObject {
     let id: UUID
     let frontCover: String
     let title: String

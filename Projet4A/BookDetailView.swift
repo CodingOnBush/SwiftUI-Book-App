@@ -9,7 +9,6 @@ import SwiftUI
 
 struct BookDetailView: View {
     @State var currentBook: Book
-    let addAction: () -> Void
     let deleteAction: () -> Void
     @Environment(\.presentationMode) var presentationMode
     
@@ -47,10 +46,10 @@ struct BookDetailView: View {
                 Spacer()
                 
                 Button(action: {
-                    addAction()
+                    deleteAction()
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
-                    Text("Add")
+                    Text("Delete")
                 })
 
                 Spacer()
@@ -62,6 +61,6 @@ struct BookDetailView: View {
 
 struct BookDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        BookDetailView(currentBook: myBooks[0], addAction: {}, deleteAction: {})
+        BookDetailView(currentBook: myBooks[0], deleteAction: {})
     }
 }
