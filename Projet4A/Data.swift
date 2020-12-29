@@ -22,11 +22,6 @@ class BookLibrary: ObservableObject {
     ]
     
     func removeFromMyBooks(id: UUID) {
-//        ForEach(myBooks.indices) { currentIndice in
-//            if myBooks[currentIndice].id == id {
-//                self.myBooks.remove(at: currentIndice)
-//            }
-//        }
         myBooks.removeAll(where: { $0.id == id })
     }
     
