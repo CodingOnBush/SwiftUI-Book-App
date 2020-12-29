@@ -32,11 +32,10 @@ struct FrontCover: View {
 }
 
 struct FrontCover_Previews: PreviewProvider {
+    @StateObject static var bookLibrary = BookLibrary()
+    
     static var previews: some View {
-        Group {
-            FrontCover(book: myBooks[0], height: 200)
-            FrontCover(book: myBooks[0], height: 200)
-        }
+        FrontCover(book: bookLibrary.myBooks[0], height: 200)
         .previewLayout(.sizeThatFits)
         .padding()
     }

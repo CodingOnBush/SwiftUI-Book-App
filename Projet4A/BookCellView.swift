@@ -47,8 +47,10 @@ struct BookCellView: View {
 }
 
 struct BookCellView_Previews: PreviewProvider {
+    @StateObject static var bookLibrary = BookLibrary()
+    
     static var previews: some View {
-        BookCellView(book: myBooks[0])
+        BookCellView(book: bookLibrary.myBooks[0])
             .previewLayout(.sizeThatFits)
             .padding()
     }

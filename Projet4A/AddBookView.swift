@@ -7,43 +7,8 @@
 
 import SwiftUI
 
-class BookListResult: ObservableObject {
-
-    @Published var booksResult: [Book] = [
-        Book(title: "Title8", author: "Author8"),
-        Book(title: "Title2", author: "Author2"),
-        Book(title: "Title2", author: "Author2"),
-        Book(title: "Title2", author: "Author2"),
-        Book(title: "Title2", author: "Author2")
-    ]
-    
-    @Published var allBooks: [Book] = myBooks
-
-    func changement(){
-        self.booksResult.append(Book(title: "New title", author: "New author"))
-        getData()
-    }
-    
-    func getData(){
-        
-    }
-    
-    func addToMyBooks(book: Book){
-        allBooks.append(book)
-    }
-    
-    func removeFromMyBooks(book: Book){
-//        if let i = booksResult.firstIndex(of: book) {
-//            booksResult.remove(at: i)
-//            print("\(book.title) Removed")
-//        }
-    }
-
-}
-
 struct AddBookView: View {
-    @ObservedObject var booksVM = BookListResult()
-    @ObservedObject var actu = Actu()
+    @ObservedObject var bookLibrary: BookLibrary
     @State var research = ""
     @State private var show: Bool = false
     @State private var isAdded: Bool = false
@@ -61,18 +26,18 @@ struct AddBookView: View {
                         .font(.system(size: CGFloat(30)))
                     Spacer()
                     Button(action: {
-                        booksVM.addToMyBooks(book: Book(title: "ADZA", author: "2AE"))
+                        bookLibrary.myBooks.append(Book(title: "ADZA", author: "2AE"))
                     }, label: {
                         Text("GO")
                     })
                 }.padding(.horizontal, 20)
                 
                 ScrollView {
-                    ForEach(booksVM.booksResult) { myBook in
+                    ForEach(bookLibrary.result) { currentBook in
                         HStack {
-                            BookCellView(book: myBook).padding(.leading, 20)
+                            BookCellView(book: currentBook).padding(.leading, 20)
                             Button(action: {
-                                actu.addToMyBooks(book: myBook)
+                                bookLibrary.addToMyBooks(book: currentBook)
                                 presentationMode.wrappedValue.dismiss()
                             }, label: {
                                 Image(systemName: "plus.square")
@@ -88,7 +53,9 @@ struct AddBookView: View {
 }
 
 struct AddBookView_Previews: PreviewProvider {
+    @StateObject static var bookLibrary = BookLibrary()
+    
     static var previews: some View {
-        AddBookView(addAction: {})
+        AddBookView(bookLibrary: bookLibrary, addAction: {})
     }
 }

@@ -11,20 +11,20 @@ struct ListBookView: View {
     @State private var isReadingTimeShowed: Bool = false
     @State private var isAddBookShowed: Bool = false
     @State private var isInfoShowed: Bool = false
-    @ObservedObject var actu = Actu()
+    @ObservedObject var bookLibrary: BookLibrary
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                List(actu.booksResult) { myBook in
+                List(bookLibrary.myBooks) { myBook in
                     NavigationLink(
                         destination: BookDetailView(currentBook: myBook, deleteAction: {
-                            actu.removeFromMyBooks(book: myBook)
+                            bookLibrary.removeFromMyBooks(id: myBook.id)
                         }),
                         label: {BookCellView(book: myBook)}
                     )
                     .navigationTitle(Text("My Books"))
-                    .navigationBarItems(trailing: infoButton())
+                    .navigationBarItems(trailing: InfoButton(isInfoShowed: $isInfoShowed))
                 }
                 .listStyle(GroupedListStyle())
                 
@@ -33,34 +33,40 @@ struct ListBookView: View {
                 })
                 .shadow(radius: 10)
                 .sheet(isPresented: $isAddBookShowed, content: {
-                    AddBookView(addAction: {})
+                    AddBookView(bookLibrary: bookLibrary, addAction: {})
                 })
                 .padding(10)
             }
         }
     }
+}
+
+struct InfoButton: View {
+    @Binding var isInfoShowed: Bool
     
-    func infoButton() -> some View {
-        return
-            Button(
-                action: { isInfoShowed.toggle()},
-                label: {
-                    Image(systemName: "info.circle")
-                        .font(.system(size: 25))
-                        .padding(5)
-                }
-            )
-            .sheet(
-                isPresented:$isInfoShowed,
-                content: {
-                    Text("Info")
-                }
-            )
+    var body: some View {
+        Button(
+            action: { isInfoShowed.toggle()},
+            label: {
+                Image(systemName: "info.circle")
+                    .font(.system(size: 25))
+                    .padding(5)
+            }
+        )
+        .sheet(
+            isPresented:$isInfoShowed,
+            content: {
+                Text("Info")
+            }
+        )
     }
 }
 
+
 struct MyBooksView_Previews: PreviewProvider {
+    @StateObject static var bookLibrary = BookLibrary()
+    
     static var previews: some View {
-        ListBookView()
+        ListBookView(bookLibrary: bookLibrary)
     }
 }

@@ -60,7 +60,9 @@ struct BookDetailView: View {
 }
 
 struct BookDetailView_Previews: PreviewProvider {
+    @StateObject static var bookLibrary = BookLibrary()
+    
     static var previews: some View {
-        BookDetailView(currentBook: myBooks[0], deleteAction: {})
+        BookDetailView(currentBook: bookLibrary.myBooks[0], deleteAction: {})
     }
 }
