@@ -15,6 +15,8 @@
 		1EAF5E12258FFDAE00CE1021 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAF5E11258FFDAE00CE1021 /* Data.swift */; };
 		1EAF5E15258FFEB500CE1021 /* BookCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAF5E14258FFEB500CE1021 /* BookCellView.swift */; };
 		1EB6528A2594E6FE00C1C011 /* AddBookButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB652892594E6FE00C1C011 /* AddBookButtonView.swift */; };
+		1EC15600259B7AD0006462D8 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 1EC155FF259B7AD0006462D8 /* SwiftyJSON */; };
+		1EC15607259B7D1C006462D8 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1EC15606259B7D1C006462D8 /* SDWebImageSwiftUI */; };
 		1EDE038C2591EF29001A72C8 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE038B2591EF29001A72C8 /* ProgressBarView.swift */; };
 		1EEC16D0256BE688000A2407 /* Projet4AApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEC16CF256BE688000A2407 /* Projet4AApp.swift */; };
 		1EEC16D4256BE68E000A2407 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EEC16D3256BE68E000A2407 /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EC15607259B7D1C006462D8 /* SDWebImageSwiftUI in Frameworks */,
+				1EC15600259B7AD0006462D8 /* SwiftyJSON in Frameworks */,
 				1EF742F3259A36AB00C7C587 /* KingfisherSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +144,8 @@
 			name = Projet4A;
 			packageProductDependencies = (
 				1EF742F2259A36AB00C7C587 /* KingfisherSwiftUI */,
+				1EC155FF259B7AD0006462D8 /* SwiftyJSON */,
+				1EC15606259B7D1C006462D8 /* SDWebImageSwiftUI */,
 			);
 			productName = Projet4A;
 			productReference = 1EEC16CC256BE688000A2407 /* Projet4A.app */;
@@ -170,6 +176,8 @@
 			mainGroup = 1EEC16C3256BE688000A2407;
 			packageReferences = (
 				1EF742F1259A36AB00C7C587 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1EC155FE259B7AD0006462D8 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				1EC15605259B7D1C006462D8 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 1EEC16CD256BE688000A2407 /* Products */;
 			projectDirPath = "";
@@ -398,6 +406,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1EC155FE259B7AD0006462D8 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		1EC15605259B7D1C006462D8 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
 		1EF742F1259A36AB00C7C587 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -409,6 +433,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1EC155FF259B7AD0006462D8 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EC155FE259B7AD0006462D8 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		1EC15606259B7D1C006462D8 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EC15605259B7D1C006462D8 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		1EF742F2259A36AB00C7C587 /* KingfisherSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1EF742F1259A36AB00C7C587 /* XCRemoteSwiftPackageReference "Kingfisher" */;

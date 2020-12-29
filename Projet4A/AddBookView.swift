@@ -26,7 +26,7 @@ struct AddBookView: View {
                         .font(.system(size: CGFloat(30)))
                     Spacer()
                     Button(action: {
-                        bookLibrary.myBooks.append(Book(title: "ADZA", author: "2AE"))
+//                        bookLibrary.myBooks.append(Book(title: "ADZA", author: "2AE"))
                     }, label: {
                         Text("GO")
                     })

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KingfisherSwiftUI
 
 struct FrontCover: View {
     var book: Book
@@ -22,12 +23,12 @@ struct FrontCover: View {
             Text(book.title)
                 .frame(width: CGFloat(Double(height-45)/1.5), height: CGFloat(height-30))
             
-            Image(book.frontCover)
+            KFImage(URL(string: book.frontCoverImageLink))
                 .resizable()
                 .scaledToFit()
                 .frame(width: CGFloat(Double(height)/1.5), height: CGFloat(height), alignment: .topLeading)
                 .clipped()
-        }
+        }.cornerRadius(8.0)
     }
 }
 

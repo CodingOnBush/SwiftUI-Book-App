@@ -6,44 +6,74 @@
 //
 
 import Foundation
+import SwiftyJSON
+import SDWebImageSwiftUI
+import KingfisherSwiftUI
 
 class BookLibrary: ObservableObject {
-    @Published var myBooks: [Book] = [
-        Book(title: "EAIUGDZ", author: "DAZUDH"),
-        Book(title: "Title2", author: "Author2"),
-        Book(title: "Title3", author: "Author3"),
-        Book(title: "Title", author: "Author")
-    ]
+    @Published var myBooks = [Book]()
 
-    @Published var result: [Book] = [
-        Book(title: "Title9", author: "Author9"),
-        Book(title: "Title", author: "Author"),
-        Book(title: "Title", author: "Author")
-    ]
+    @Published var result = [Book]()
     
-    func removeFromMyBooks(id: UUID) {
-        myBooks.removeAll(where: { $0.id == id })
+    func removeFromMyBooks(uuid: UUID) {
+        myBooks.removeAll(where: { $0.uuid == uuid })
     }
     
     func addToMyBooks(book: Book) {
         myBooks.append(book)
     }
+    
+    init() {
+        let url = "https://www.googleapis.com/books/v1/volumes?q=java"
+        
+        let session = URLSession(configuration: .default)
+                 
+        session.dataTask(with: URL(string: url)!) { (data, _, err) in
 
-//    let listOfPictures = [
-//        URL(string: "https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/3214958/pexels-photo-3214958.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/3225529/pexels-photo-3225529.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/3889855/pexels-photo-3889855.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/2147486/pexels-photo-2147486.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/2265876/pexels-photo-2265876.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/1576937/pexels-photo-1576937.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/2265876/pexels-photo-2265876.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/1576937/pexels-photo-1576937.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/2303781/pexels-photo-2303781.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/731217/pexels-photo-731217.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"),
-//        URL(string: "https://images.pexels.com/photos/885880/pexels-photo-885880.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500")
-//    ]
+            if err != nil{
+                print((err?.localizedDescription)!)
+                return
+            }
+            
+            let json = try! JSON(data: data!)
+            
+            let items = json["items"].array!
+
+            for i in items{
+                              
+                let id = i["id"].stringValue
+
+                let title = i["volumeInfo"]["title"].stringValue
+                
+                let language = i["volumeInfo"]["language"].stringValue
+                
+                let pageNumber = i["volumeInfo"]["pageCount"].int
+                
+                let authors = i["volumeInfo"]["authors"].array!
+                var author = ""
+                for j in authors{
+                    author += "\(j.stringValue)"
+                }
+
+                let description = i["volumeInfo"]["description"].stringValue
+
+                let imurl = i["volumeInfo"]["imageLinks"]["thumbnail"].stringValue
+                
+                DispatchQueue.main.async {
+                    self.result.append(
+                        Book(
+                            id: id,
+                            title: title,
+                            author: author,
+                            frontCoverImageLink: imurl,
+                            description: description,
+                            language: language,
+                            pageNumber: pageNumber!
+                        )
+                    )
+                }
+            }
+        }.resume()
+    }
 
 }

@@ -19,14 +19,13 @@ struct ListBookView: View {
                 List(bookLibrary.myBooks) { myBook in
                     NavigationLink(
                         destination: BookDetailView(currentBook: myBook, deleteAction: {
-                            bookLibrary.removeFromMyBooks(id: myBook.id)
+                            bookLibrary.removeFromMyBooks(uuid: myBook.uuid)
                         }),
                         label: {BookCellView(book: myBook)}
                     )
-                    .navigationTitle(Text("My Books"))
-                    .navigationBarItems(trailing: InfoButton(isInfoShowed: $isInfoShowed))
                 }
                 .listStyle(GroupedListStyle())
+                
                 
                 AddBookButtonView(size: 25, action: {
                     isAddBookShowed.toggle()
@@ -37,6 +36,8 @@ struct ListBookView: View {
                 })
                 .padding(10)
             }
+            .navigationTitle(Text("My Books"))
+            .navigationBarItems(trailing: InfoButton(isInfoShowed: $isInfoShowed))
         }
     }
 }

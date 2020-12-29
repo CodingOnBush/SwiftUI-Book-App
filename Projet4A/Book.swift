@@ -8,19 +8,23 @@
 import Foundation
 
 class Book: Identifiable, ObservableObject {
-    let id: UUID
-    let frontCover: String
+    let uuid: UUID
+    let id: String
+    let frontCoverImageLink: String
     let title: String
     let author: String
-    let pageNumber: Double
+    let description: String
+    let pageNumber: Int
     let language: String
     
-    init(title: String, author: String) {
-        self.id = UUID()
-        self.frontCover = id.uuidString
+    init(id: String, title: String, author: String, frontCoverImageLink: String, description: String, language: String, pageNumber: Int) {
+        self.uuid = UUID()
+        self.id = id
+        self.frontCoverImageLink = frontCoverImageLink
         self.title = title
         self.author = author
-        self.pageNumber = 200
-        self.language = "Français"
+        self.pageNumber = pageNumber
+        self.language = language
+        self.description = description
     }
 }
