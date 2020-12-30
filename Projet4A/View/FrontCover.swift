@@ -33,7 +33,7 @@ struct FrontCover: View {
 }
 
 struct FrontCover_Previews: PreviewProvider {
-    @StateObject static var bookLibrary = BookLibrary()
+    @StateObject static var bookLibrary = BookLibraryManager()
     
     static var previews: some View {
         FrontCover(book: bookLibrary.myBooks[0], height: 200)

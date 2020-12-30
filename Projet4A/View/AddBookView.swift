@@ -8,13 +8,9 @@
 import SwiftUI
 
 struct AddBookView: View {
-    @ObservedObject var bookLibrary: BookLibrary
-    @State var research = ""
-    @State private var show: Bool = false
-    @State private var isAdded: Bool = false
-    @State private var addedBook: Book?
-    let addAction: () -> Void
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var bookLibrary: BookLibraryManager
+    @State var research = ""
     
     var body: some View {
         NavigationView {
@@ -26,19 +22,23 @@ struct AddBookView: View {
                         .font(.system(size: CGFloat(30)))
                     Spacer()
                     Button(action: {
-//                        bookLibrary.myBooks.append(Book(title: "ADZA", author: "2AE"))
+                        bookLibrary.research(research: research)
+                        // Baisser le clavier
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }, label: {
-                        Text("GO")
+                        Image(systemName: "magnifyingglass")
+                            .font(.system(size: 25.0))
                     })
                 }.padding(.horizontal, 20)
                 
                 ScrollView {
-                    ForEach(bookLibrary.result) { currentBook in
+                    ForEach(bookLibrary.booksResult) { currentBook in
                         HStack {
                             BookCellView(book: currentBook).padding(.leading, 20)
                             Button(action: {
                                 bookLibrary.addToMyBooks(book: currentBook)
                                 presentationMode.wrappedValue.dismiss()
+                                bookLibrary.booksResult = [Book]()
                             }, label: {
                                 Image(systemName: "plus.square")
                                     .font(.system(size: 30))
@@ -53,9 +53,9 @@ struct AddBookView: View {
 }
 
 struct AddBookView_Previews: PreviewProvider {
-    @StateObject static var bookLibrary = BookLibrary()
+    @StateObject static var bookLibrary = BookLibraryManager()
     
     static var previews: some View {
-        AddBookView(bookLibrary: bookLibrary, addAction: {})
+        AddBookView(bookLibrary: bookLibrary)
     }
 }

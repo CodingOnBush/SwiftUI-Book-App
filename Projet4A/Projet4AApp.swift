@@ -10,7 +10,7 @@ import SwiftUI
 @main
 // The @main attribute identifies the app’s entry point.
 struct Projet4AApp: App {
-    @StateObject var bookLibrary = BookLibrary()
+    @StateObject var bookLibrary = BookLibraryManager()
     
     var body: some Scene {
         WindowGroup {

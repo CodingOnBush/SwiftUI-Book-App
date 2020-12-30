@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct BookDetailView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State var currentBook: Book
     let deleteAction: () -> Void
-    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack
@@ -40,7 +40,7 @@ struct BookDetailView: View {
 
                 HStack {
                     Text("Page number :")
-                    Text("\(Int(currentBook.pageNumber))").lineLimit(1)
+                    Text("\(currentBook.pageNumber)").lineLimit(1)
                     Spacer()
                 }.padding()
                 Spacer()
@@ -60,7 +60,7 @@ struct BookDetailView: View {
 }
 
 struct BookDetailView_Previews: PreviewProvider {
-    @StateObject static var bookLibrary = BookLibrary()
+    @StateObject static var bookLibrary = BookLibraryManager()
     
     static var previews: some View {
         BookDetailView(currentBook: bookLibrary.myBooks[0], deleteAction: {})

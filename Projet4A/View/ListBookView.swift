@@ -11,15 +11,16 @@ struct ListBookView: View {
     @State private var isReadingTimeShowed: Bool = false
     @State private var isAddBookShowed: Bool = false
     @State private var isInfoShowed: Bool = false
-    @ObservedObject var bookLibrary: BookLibrary
+    @ObservedObject var bookLibrary: BookLibraryManager
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
                 List(bookLibrary.myBooks) { myBook in
                     NavigationLink(
-                        destination: BookDetailView(currentBook: myBook, deleteAction: {
-                            bookLibrary.removeFromMyBooks(uuid: myBook.uuid)
+                        destination: BookDetailView(
+                            currentBook: myBook,
+                            deleteAction: { bookLibrary.removeFromMyBooks(id: myBook.id)
                         }),
                         label: {BookCellView(book: myBook)}
                     )
@@ -32,7 +33,7 @@ struct ListBookView: View {
                 })
                 .shadow(radius: 10)
                 .sheet(isPresented: $isAddBookShowed, content: {
-                    AddBookView(bookLibrary: bookLibrary, addAction: {})
+                    AddBookView(bookLibrary: bookLibrary)
                 })
                 .padding(10)
             }
@@ -65,7 +66,7 @@ struct InfoButton: View {
 
 
 struct MyBooksView_Previews: PreviewProvider {
-    @StateObject static var bookLibrary = BookLibrary()
+    @StateObject static var bookLibrary = BookLibraryManager()
     
     static var previews: some View {
         ListBookView(bookLibrary: bookLibrary)

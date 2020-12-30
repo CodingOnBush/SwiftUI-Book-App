@@ -36,7 +36,7 @@ struct BookCellView: View {
                     }
                 }.padding(.top, 10)
                 
-                Text("\(Int(book.pageNumber)) pages")
+                Text("\(book.pageNumber) pages")
                     .foregroundColor(Color.white)
                     .font(.system(size: CGFloat(25)))
                     .padding(.bottom, 10)
@@ -47,10 +47,8 @@ struct BookCellView: View {
 }
 
 struct BookCellView_Previews: PreviewProvider {
-    @StateObject static var bookLibrary = BookLibrary()
-    
     static var previews: some View {
-        BookCellView(book: bookLibrary.myBooks[0])
+        BookCellView(book: Book(id: "id", title: "title", author: "author", frontCoverImageLink: "link", description: "description", language: "fr", pageNumber: "23"))
             .previewLayout(.sizeThatFits)
             .padding()
     }
