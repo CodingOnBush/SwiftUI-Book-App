@@ -28,10 +28,9 @@ struct InfoView: View {
             }
             Spacer()
             
-            Button(action: {
-                // Linktree link
-            }, label: {
-                Text("My social links")
+            Button(action: {}, label: {
+                Link("My social links", destination: URL(string: "https://www.hackingwithswift.com/quick-start/swiftui")!)
+                //Text("My social links")
                     .fontWeight(.bold)
                     .font(.title)
                     .foregroundColor(.white)
