@@ -74,7 +74,7 @@ struct InfoButton: View {
         .sheet(
             isPresented:$isInfoShowed,
             content: {
-                Text("Info")
+                InfoView()
             }
         )
     }

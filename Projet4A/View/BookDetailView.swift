@@ -25,7 +25,7 @@ struct BookDetailView: View {
                     Text(currentBook.title).lineLimit(1)
                     Spacer()
                 }.padding()
-
+                
                 HStack {
                     Text("Author :")
                     Text(currentBook.author).lineLimit(1)
@@ -43,6 +43,12 @@ struct BookDetailView: View {
                     Text("\(currentBook.pageNumber)").lineLimit(1)
                     Spacer()
                 }.padding()
+                
+                VStack {
+                    Text("Description :")
+                    Text(currentBook.description)
+                }.padding()
+                
                 Spacer()
                 
                 Button(action: {
@@ -51,9 +57,12 @@ struct BookDetailView: View {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
                     Text("Delete")
+                        .foregroundColor(Color.white)
+                        .bold()
+                        .padding()
                 })
-
-                Spacer()
+                .background(Color.red)
+                .cornerRadius(10.0)
                 
             }
         }

@@ -22,6 +22,7 @@ struct AddBookButtonView: View {
             Spacer()
         })
         .background(Color.pink)
+        .opacity(0.8)
         .cornerRadius(10.0)
     }
 }
