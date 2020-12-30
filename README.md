@@ -1,6 +1,6 @@
 # Projet4AApp
 ## Introduction
-Welcome to my Projet4A. It's a SwiftUI App ( 2nd iOS app of my life ) that allow you to store your books. I used the google books api to research books. I used the famous [KingFisher](https://github.com/onevcat/Kingfisher) and [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) libraries.
+Welcome to my Projet4A. It's a SwiftUI App ( 2nd iOS app of my life ) that allows you to store your books. I used the google books api to research books. I used the famous [KingFisher](https://github.com/onevcat/Kingfisher) and [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) libraries.
 
 ## Instructions followed
   * Git flow
@@ -12,7 +12,7 @@ Welcome to my Projet4A. It's a SwiftUI App ( 2nd iOS app of my life ) that allow
   * SwiftUI and Swift
 
 ## Functionalities with images
-At the begining I wanted to create an app to track my reading speed with a chronometer in the app and you indicate your current page at the end of a reading session. I didn't well managed my time so I made an app to store my books because I wanted to deliver a clean and functional work. It's a student project in my 4th year of engineering at ESIEA France.
+At the begining I wanted to create an app to track my reading speed with a chronometer in the app and indicate you your current page at the end of a reading session. To deliver a clean and functional work I have chosen to create an app to only store books. It's a student project for my 4th year of engineering at ESIEA France.
 
 #### Main view
 
@@ -36,7 +36,7 @@ At the begining I wanted to create an app to track my reading speed with a chron
 </div>
 
 ## Links
-I used a lot of websites to understand some programming and devevelopment concept in SwiftUI
+I used a lot of websites to understand some programming and development concept in SwiftUI
 
 #### To understand some concepts in SwiftUI:
 * https://swiftwithmajid.com/
