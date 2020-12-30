@@ -28,17 +28,15 @@ struct InfoView: View {
             }
             Spacer()
             
-            Button(action: {}, label: {
-                Link("My social links", destination: URL(string: "https://www.hackingwithswift.com/quick-start/swiftui")!)
-                //Text("My social links")
-                    .fontWeight(.bold)
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding(10)
-                    .background(Color.purple)
-                    .cornerRadius(18.0)
-            })
-            .padding()
+            Link(destination: URL(string: "https://linktr.ee/MostafaOmrane")!){
+                Text("My social links")
+                .fontWeight(.bold)
+                .font(.title)
+                .foregroundColor(.white)
+                .padding(10)
+                .background(Color.purple)
+                .cornerRadius(18.0)
+            }
             
             Spacer()
             
