@@ -15,16 +15,25 @@ Welcome to my Projet4A. It's a SwiftUI App ( 2nd iOS app of my life ) that allow
 At the begining I wanted to create an app to track my reading speed with a chronometer in the app and you indicate your current page at the end of a reading session. I didn't well managed my time so I made an app to store my books because I wanted to deliver a clean and functional work. It's a student project in my 4th year of engineering at ESIEA France.
 
 #### Main view
-![Image of Main view](https://https://github.com/CodingOnBush/Projet4AApp/images/mainView.png?raw=true)
+
+<div>
+<img src="./images/mainView.png" height="400"/>
+</div>
 
 #### Research view
-![Image of Research view](https://https://github.com/CodingOnBush/Projet4AApp/images/researchView.png?raw=true)
+<div>
+<img src="./images/researchView.png" height="400"/>
+</div>
 
 #### Detail view
-![Image of Detail view](https://https://github.com/CodingOnBush/Projet4AApp/images/detailView.png?raw=true)
+<div>
+<img src="./images/detailView.png" height="400"/>
+</div>
 
 #### Info view
-![Image of Info view](https://https://github.com/CodingOnBush/Projet4AApp/images/infoView.png?raw=true)
+<div>
+<img src="./images/infoView.png" height="400"/>
+</div>
 
 ## Links
 I used a lot of websites to understand some programming and devevelopment concept in SwiftUI
