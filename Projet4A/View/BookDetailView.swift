@@ -46,6 +46,7 @@ struct BookDetailView: View {
                 Spacer()
                 
                 Button(action: {
+                    //viewContext.delete(currentBookEntity)
                     deleteAction()
                     presentationMode.wrappedValue.dismiss()
                 }, label: {

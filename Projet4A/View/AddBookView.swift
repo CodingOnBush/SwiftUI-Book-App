@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddBookView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var bookLibrary: BookLibraryManager
     @State var research = ""
     
@@ -36,9 +37,25 @@ struct AddBookView: View {
                         HStack {
                             BookCellView(book: currentBook).padding(.leading, 20)
                             Button(action: {
-                                bookLibrary.addToMyBooks(book: currentBook)
+                                //bookLibrary.addToMyBooks(book: currentBook)
+                                print("AFAOE")
+                                
+                                let newBook = BookEntity(context: viewContext)
+                                newBook.id = currentBook.id
+                                newBook.title = currentBook.title
+                                newBook.author = currentBook.author
+                                newBook.frontCoverImageLink = currentBook.frontCoverImageLink
+                                newBook.myDescription = currentBook.description
+                                newBook.myLanguage = currentBook.language
+                                newBook.pageNumber = currentBook.pageNumber
+                                
+                                do {
+                                    try viewContext.save()
+                                } catch {
+                                    print("Erreur d'enregistrement de context")
+                                }
                                 presentationMode.wrappedValue.dismiss()
-                                bookLibrary.booksResult = [Book]()
+                                //bookLibrary.booksResult = [Book]()
                             }, label: {
                                 Image(systemName: "plus.square")
                                     .font(.system(size: 30))
