@@ -1,6 +1,6 @@
 # Projet4AApp
 ## Introduction
-Welcome to my Projet4A. It's a SwiftUI App ( 2nd iOS app of my life ) that allow you to store your books. I used the google books api to research books. I used the famous [KingFisher!](https://github.com/onevcat/Kingfisher) and [SwiftyJSON!](https://github.com/SwiftyJSON/SwiftyJSON) libraries.
+Welcome to my Projet4A. It's a SwiftUI App ( 2nd iOS app of my life ) that allow you to store your books. I used the google books api to research books. I used the famous [KingFisher](https://github.com/onevcat/Kingfisher) and [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) libraries.
 
 ## Instructions followed
   * Git flow
