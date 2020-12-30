@@ -11,10 +11,13 @@ import SwiftUI
 // The @main attribute identifies the app’s entry point.
 struct Projet4AApp: App {
     @StateObject var bookLibrary = BookLibraryManager()
+    let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
             ListBookView(bookLibrary: bookLibrary)
+                .environmentObject(BookLibraryManager())
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

@@ -27,6 +27,8 @@ class BookLibraryManager: ObservableObject {
         var myResearch = research
         print(myResearch)
         myResearch = myResearch.folding(options: .diacriticInsensitive, locale: .current)
+        myResearch = myResearch.replacingOccurrences(of: "’", with: " ")
+        myResearch = myResearch.replacingOccurrences(of: " ", with: "&")
         print(myResearch)
         currentUrlString.append(myResearch)
         print("My current URL is \(currentUrlString)")

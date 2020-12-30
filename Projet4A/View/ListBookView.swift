@@ -12,17 +12,33 @@ struct ListBookView: View {
     @State private var isAddBookShowed: Bool = false
     @State private var isInfoShowed: Bool = false
     @ObservedObject var bookLibrary: BookLibraryManager
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(
+        entity: BookEntity.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \BookEntity.id, ascending: true)
+        ]
+    ) var myBooks: FetchedResults<BookEntity>
     
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                List(bookLibrary.myBooks) { myBook in
+                List(myBooks) { myBookEntity in
                     NavigationLink(
                         destination: BookDetailView(
-                            currentBook: myBook,
-                            deleteAction: { bookLibrary.removeFromMyBooks(id: myBook.id)
-                        }),
-                        label: {BookCellView(book: myBook)}
+                            currentBook: Book(bookEntity: myBookEntity),
+                            deleteAction: {
+                                // delete
+                                viewContext.delete(myBookEntity)
+                                do {
+                                    try viewContext.save()
+                                } catch {
+                                    print("Erreur de suppression")
+                                }
+                            }
+                        ),
+                        label: {BookCellView(book: Book(bookEntity: myBookEntity))}
                     )
                 }
                 .listStyle(GroupedListStyle())

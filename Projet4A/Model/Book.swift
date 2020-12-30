@@ -16,4 +16,32 @@ struct Book: Identifiable {
     let description: String
     let language: String
     let pageNumber: String
+    
+    init(
+        id: String,
+        title: String,
+        author: String,
+        frontCoverImageLink: String,
+        description: String,
+        language: String,
+        pageNumber: String
+    ) {
+        self.id = id
+        self.title = title
+        self.author = author
+        self.frontCoverImageLink = frontCoverImageLink
+        self.description = description
+        self.language = language
+        self.pageNumber = pageNumber
+    }
+    
+    init(bookEntity: BookEntity) {
+        self.id = bookEntity.id
+        self.title = bookEntity.title
+        self.author = bookEntity.author
+        self.frontCoverImageLink = bookEntity.frontCoverImageLink
+        self.description = bookEntity.myDescription
+        self.language = bookEntity.myLanguage
+        self.pageNumber = bookEntity.pageNumber
+    }
 }
