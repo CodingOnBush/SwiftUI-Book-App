@@ -24,6 +24,7 @@ struct AddBookButtonView: View {
         .background(Color.pink)
         .opacity(0.8)
         .cornerRadius(10.0)
+        .shadow(radius: 10)
     }
 }
 

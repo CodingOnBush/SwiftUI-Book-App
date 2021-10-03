@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListBookView: View {
-    @State private var isReadingTimeShowed: Bool = false
+//    @State private var isReadingTimeShowed: Bool = false
     @State private var isAddBookShowed: Bool = false
     @State private var isInfoShowed: Bool = false
     @ObservedObject var bookLibrary: BookLibraryManager
@@ -24,12 +24,15 @@ struct ListBookView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
+                
+                //My list of books with navigation
                 List(myBooks) { myBookEntity in
                     NavigationLink(
                         destination: BookDetailView(
-                            currentBook: Book(bookEntity: myBookEntity),
+                            currentBook: Book(
+                                bookEntity: myBookEntity
+                            ),
                             deleteAction: {
-                                // delete
                                 viewContext.delete(myBookEntity)
                                 do {
                                     try viewContext.save()
@@ -38,20 +41,31 @@ struct ListBookView: View {
                                 }
                             }
                         ),
-                        label: {BookCellView(book: Book(bookEntity: myBookEntity))}
+                        label: {
+                            BookCellView(
+                                book: Book(
+                                    bookEntity: myBookEntity
+                                )
+                            )
+                        }
                     )
                 }
                 .listStyle(GroupedListStyle())
                 
-                
-                AddBookButtonView(size: 25, action: {
-                    isAddBookShowed.toggle()
-                })
-                .shadow(radius: 10)
-                .sheet(isPresented: $isAddBookShowed, content: {
-                    AddBookView(bookLibrary: bookLibrary)
-                })
+                // Button
+                AddBookButtonView(
+                    size: 25,
+                    action: {
+                        isAddBookShowed.toggle()
+                    }
+                )
                 .padding(10)
+                .sheet(
+                    isPresented: $isAddBookShowed,
+                    content: {
+                        AddBookView(bookLibrary: bookLibrary)
+                    }
+                )
             }
             .navigationTitle(Text("My Books"))
             .navigationBarItems(trailing: InfoButton(isInfoShowed: $isInfoShowed))

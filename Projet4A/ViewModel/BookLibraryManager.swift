@@ -25,13 +25,18 @@ class BookLibraryManager: ObservableObject {
     func research(research: String) {
         var currentUrlString = self.urlString
         var myResearch = research
+        
         print(myResearch)
+        
         myResearch = myResearch.folding(options: .diacriticInsensitive, locale: .current)
         myResearch = myResearch.replacingOccurrences(of: "’", with: " ")
         myResearch = myResearch.replacingOccurrences(of: " ", with: "&")
+        
         print(myResearch)
+        
         currentUrlString.append(myResearch)
         print("My current URL is \(currentUrlString)")
+        
         loadData(urlString: currentUrlString)
     }
     
@@ -41,23 +46,27 @@ class BookLibraryManager: ObservableObject {
         self.booksResult = [Book]()
 
         URLSession(configuration: .default).dataTask(with: URL(string: urlString)!) { (data, _, err) in
-            if err != nil{
+            if err != nil {
                 print("ERREUR :")
                 print((err?.localizedDescription)!)
                 return
             }
+            
             let json = try! JSON(data: data!)
             let items = json["items"].array!
             
-            for i in items{
+            for i in items {
                 count += 1
                 let id = i["id"].stringValue
+                
                 let title = i["volumeInfo"]["title"].stringValue
                 print(title)
+                
+                //Add author or authors
                 var author = ""
-                if i["volumeInfo"]["authors"].array != nil{
+                if i["volumeInfo"]["authors"].array != nil {
                     let authors = i["volumeInfo"]["authors"].array!
-                    for j in authors{
+                    for j in authors {
                         author += "\(j.stringValue)"
                     }
                 }else {
@@ -68,6 +77,7 @@ class BookLibraryManager: ObservableObject {
                 let imurl = i["volumeInfo"]["imageLinks"]["thumbnail"].stringValue
                 let language = i["volumeInfo"]["language"].stringValue
                 let pageNumber = i["volumeInfo"]["pageCount"].stringValue
+                
                 DispatchQueue.main.async {
                     self.booksResult.append(
                         Book(
@@ -82,7 +92,7 @@ class BookLibraryManager: ObservableObject {
                     )
                 }
                 
-                // Pour avoir une limite du nombre livre affiché
+                // limit number of books loaded
                 if count >= limit {
                     count = 0
                     break
