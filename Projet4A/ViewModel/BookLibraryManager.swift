@@ -26,78 +26,76 @@ class BookLibraryManager: ObservableObject {
         var currentUrlString = self.urlString
         var myResearch = research
         
-        print(myResearch)
-        
         myResearch = myResearch.folding(options: .diacriticInsensitive, locale: .current)
         myResearch = myResearch.replacingOccurrences(of: "’", with: " ")
         myResearch = myResearch.replacingOccurrences(of: " ", with: "&")
         
-        print(myResearch)
-        
         currentUrlString.append(myResearch)
-        print("My current URL is \(currentUrlString)")
-        
-        loadData(urlString: currentUrlString)
+
+        self.booksResult = loadData(urlString: currentUrlString)
     }
     
-    func loadData(urlString: String){
-        let limit = 30
+    func loadData(urlString: String) -> [Book] {
+        let limitBookNumber = 30
         var count = 0
-        self.booksResult = [Book]()
+        var booksResult = [Book]()
 
         URLSession(configuration: .default).dataTask(with: URL(string: urlString)!) { (data, _, err) in
             if err != nil {
-                print("ERREUR :")
-                print((err?.localizedDescription)!)
+                print("ERREUR : \((err?.localizedDescription)!)")
                 return
             }
             
             let json = try! JSON(data: data!)
             let items = json["items"].array!
             
-            for i in items {
-                count += 1
-                let id = i["id"].stringValue
-                
-                let title = i["volumeInfo"]["title"].stringValue
-                print(title)
-                
-                //Add author or authors
-                var author = ""
-                if i["volumeInfo"]["authors"].array != nil {
-                    let authors = i["volumeInfo"]["authors"].array!
-                    for j in authors {
-                        author += "\(j.stringValue)"
+            DispatchQueue.main.async {
+                for i in items {
+                    count += 1
+                    
+                    let id = i["id"].stringValue
+                    
+                    let title = i["volumeInfo"]["title"].stringValue
+                    print(title)
+                    
+                    //Add author or authors
+                    var author = ""
+                    if i["volumeInfo"]["authors"].array != nil {
+                        let authors = i["volumeInfo"]["authors"].array!
+                        for j in authors {
+                            author += "\(j.stringValue)"
+                        }
+                    }else {
+                        author = "Author unknown"
                     }
-                }else {
-                    author = "Author unknown"
-                }
-                
-                let description = i["volumeInfo"]["description"].stringValue
-                let imurl = i["volumeInfo"]["imageLinks"]["thumbnail"].stringValue
-                let language = i["volumeInfo"]["language"].stringValue
-                let pageNumber = i["volumeInfo"]["pageCount"].stringValue
-                
-                DispatchQueue.main.async {
-                    self.booksResult.append(
-                        Book(
-                            id: id,
-                            title: title,
-                            author: author,
-                            frontCoverImageLink: imurl,
-                            description: description,
-                            language: language,
-                            pageNumber: pageNumber
+                    
+                    let description = i["volumeInfo"]["description"].stringValue
+                    let imurl = i["volumeInfo"]["imageLinks"]["thumbnail"].stringValue
+                    let language = i["volumeInfo"]["language"].stringValue
+                    let pageNumber = i["volumeInfo"]["pageCount"].stringValue
+                    
+                    booksResult
+                        .append(
+                            Book(
+                                id: id,
+                                title: title,
+                                author: author,
+                                frontCoverImageLink: imurl,
+                                description: description,
+                                language: language,
+                                pageNumber: pageNumber
+                            )
                         )
-                    )
-                }
-                
-                // limit number of books loaded
-                if count >= limit {
-                    count = 0
-                    break
+                    
+                    // limit number of books loaded
+                    if count >= limitBookNumber {
+                        count = 0
+                        break
+                    }
                 }
             }
         }.resume()
+        
+        return booksResult
     }
 }

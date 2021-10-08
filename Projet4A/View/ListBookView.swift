@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ListBookView: View {
-//    @State private var isReadingTimeShowed: Bool = false
     @State private var isAddBookShowed: Bool = false
     @State private var isInfoShowed: Bool = false
     @ObservedObject var bookLibrary: BookLibraryManager

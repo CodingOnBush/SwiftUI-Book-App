@@ -16,15 +16,19 @@ struct AddBookView: View {
     var body: some View {
         NavigationView {
             VStack {
+                // Research area (text field and magnifyingglass button)
                 HStack {
                     TextField("Yoww", text: $research)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .disableAutocorrection(true)
                         .font(.system(size: CGFloat(30)))
+                    
                     Spacer()
+                    
                     Button(action: {
                         bookLibrary.research(research: research)
-                        // Baisser le clavier
+                        
+                        // Hiden keyboard
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }, label: {
                         Image(systemName: "magnifyingglass")
@@ -32,14 +36,16 @@ struct AddBookView: View {
                     })
                 }.padding(.horizontal, 20)
                 
+                // Results
                 ScrollView {
                     ForEach(bookLibrary.booksResult) { currentBook in
                         HStack {
-                            BookCellView(book: currentBook).padding(.leading, 20)
+                            // Present book cell
+                            BookCellView(book: currentBook)
+                                .padding(.leading, 20)
+                            
+                            // Present add button
                             Button(action: {
-                                //bookLibrary.addToMyBooks(book: currentBook)
-                                print("AFAOE")
-                                
                                 let newBook = BookEntity(context: viewContext)
                                 newBook.id = currentBook.id
                                 newBook.title = currentBook.title
@@ -49,13 +55,15 @@ struct AddBookView: View {
                                 newBook.myLanguage = currentBook.language
                                 newBook.pageNumber = currentBook.pageNumber
                                 
+                                // Save data
                                 do {
                                     try viewContext.save()
                                 } catch {
                                     print("Erreur d'enregistrement de context")
                                 }
+                                
+                                // Close view
                                 presentationMode.wrappedValue.dismiss()
-                                //bookLibrary.booksResult = [Book]()
                             }, label: {
                                 Image(systemName: "plus.square")
                                     .font(.system(size: 30))
@@ -63,7 +71,6 @@ struct AddBookView: View {
                         }
                     }
                 }
-                
             }.navigationTitle("Find a book")
         }
     }

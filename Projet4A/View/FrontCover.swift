@@ -19,7 +19,7 @@ struct FrontCover: View {
                 .border(Color.gray, width: 10)
                 .frame(width: CGFloat(Double(height)/1.5), height: CGFloat(height), alignment: .topLeading)
                 .clipped()
-
+            
             Text(book.title)
                 .frame(width: CGFloat(Double(height-45)/1.5), height: CGFloat(height-30))
             
@@ -28,6 +28,7 @@ struct FrontCover: View {
                 .scaledToFit()
                 .frame(width: CGFloat(Double(height)/1.5), height: CGFloat(height), alignment: .topLeading)
                 .clipped()
+            
         }.cornerRadius(8.0)
     }
 }
