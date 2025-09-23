@@ -1,4 +1,12 @@
-# Projet4AApp
+## 📚 What I learned in this project
+- Building a complete iOS application using SwiftUI and CoreData  
+- Integrating an external API (Google Books) to fetch and display data  
+- Designing user-friendly mobile interfaces with SwiftUI components  
+- Managing local data persistence and synchronization  
+- Debugging and improving app performance directly in Xcode  
+
+---
+
 ## Introduction
 Welcome to my Projet4A. It's a SwiftUI App ( 2nd iOS app of my life ) that allows you to store your books. I used the google books api to research books. I used the famous [KingFisher](https://github.com/onevcat/Kingfisher) and [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) libraries.
 
